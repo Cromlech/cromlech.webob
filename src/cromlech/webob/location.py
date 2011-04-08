@@ -9,13 +9,14 @@ from cromlech.webob import IWebObRequest
 from cromlech.io import IPublicationRoot
 from cromlech.browser.interfaces import IURLResolver
 
-_safe = '@+' # Characters that we don't want to have quoted
+
+_safe = '@+'  # Characters that we don't want to have quoted
 
 
 @adapter(Interface, IWebObRequest)
 @implementer(IURLResolver)
 def URLResolver(context, request):
-  
+
     if context is None:
         return request.application_url
 
@@ -32,7 +33,7 @@ def URLResolver(context, request):
         # __name__ from it below
         context = ILocation(context)
         container = context.__parent__
-        
+
     if container is None:
         if IPublicationRoot.providedBy(context):
             return request.application_url
