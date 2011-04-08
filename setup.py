@@ -10,7 +10,6 @@ install_requires = [
     'grokcore.component',
     'setuptools',
     'zope.interface',
-    'zope.location',
     ]
 
 tests_require = [
