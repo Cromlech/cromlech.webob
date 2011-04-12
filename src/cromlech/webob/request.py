@@ -19,6 +19,9 @@ class Request(webob.Request):
         return self.request.params
 
 
+Request.RequestClass = Request
+
+
 class RequestAdapter(Adapter):
     context(IWebObRequest)
     implements(IRequest)
