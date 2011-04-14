@@ -9,6 +9,7 @@ install_requires = [
     'cromlech.io',
     'grokcore.component',
     'setuptools',
+    'zope.i18n',
     'zope.interface',
     ]
 
