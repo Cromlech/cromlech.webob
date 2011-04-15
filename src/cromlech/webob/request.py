@@ -16,7 +16,7 @@ class Request(webob.Request):
 
     @property
     def form(self):
-        return self.request.params
+        return self.params
 
 
 Request.RequestClass = Request
