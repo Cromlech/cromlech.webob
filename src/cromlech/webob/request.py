@@ -31,6 +31,9 @@ class RequestAdapter(Adapter):
         self.script_name = request.script_name
         self.environment = request.environ
         self.body = request.body
+        self.application_url = request.application_url
+        self.charset = request.charset
+        self.method = request.method
 
     @property
     def form(self):

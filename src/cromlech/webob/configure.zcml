@@ -6,6 +6,7 @@
   <include package="grokcore.component" file="meta.zcml" />
   <grok:grok package=".request" />
   <grok:grok package=".location" />
+  <grok:grok package=".i18n" />
   <!-- END Grokking -->
 
 </configure>
