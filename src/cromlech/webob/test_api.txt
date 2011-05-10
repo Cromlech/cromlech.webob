@@ -1,20 +1,23 @@
-cromlech.webob
-**************
+
+Test environnment
+=================
+
+Groking :
 
   >>> import grokcore.component
   >>> grokcore.component.testing.grok('cromlech.webob')
 
-
-Test environnment
-=================
+Importing :
 
   >>> import cromlech.webob
   >>> from cromlech.io.interfaces import IRequest, IResponse
   >>> from zope.interface.verify import verifyClass, verifyObject
 
 
-Basic verifications
-===================
+Request and Response objects
+===============================
+
+Based on WebOb ones but providing cromlech.io API::
 
   >>> verifyClass(IRequest, cromlech.webob.request.Request)
   True
@@ -31,6 +34,8 @@ Basic verifications
 
 Adapters
 ========
+
+Adapting existing WebOb request or response to meet cromlech API::
 
   >>> import webob
   >>> request = webob.Request.blank('/path/to/app')

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.1a1'
 
 install_requires = [
     'WebOb',
@@ -19,7 +19,7 @@ tests_require = [
 
 setup(name='cromlech.webob',
       version=version,
-      description="",
+      description="Cromlech Web Framework io implementation using WebOb",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join('src', 'cromlech', 'webob',
                                          'test_api.txt')).read() + "\n" +
