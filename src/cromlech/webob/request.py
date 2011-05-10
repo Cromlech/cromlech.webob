@@ -34,6 +34,7 @@ class RequestAdapter(Adapter):
         self.application_url = request.application_url
         self.charset = request.charset
         self.method = request.method
+        self.path = request.path
 
     @property
     def form(self):

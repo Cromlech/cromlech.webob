@@ -18,9 +18,15 @@ Basic verifications
 
   >>> verifyClass(IRequest, cromlech.webob.request.Request)
   True
+  >>> verifyObject(IRequest, cromlech.webob.request.Request.blank('/'))
+  True
 
   >>> verifyClass(IResponse, cromlech.webob.response.Response)
   True
+  >>> verifyObject(IResponse, cromlech.webob.response.Response(body='',
+  ...                                               content_type='text/plain'))
+  True
+  
 
 
 Adapters
@@ -58,7 +64,7 @@ We provide adapters to retrieve Locale::
   u'fr_FR'
 
 
-Under the hood locale is choosen thanks to Preffered Language adapter::
+Under the hood locale is choosen thanks to Prefered Language adapter::
 
   >>> from zope.i18n.interfaces import IUserPreferredLanguages
   >>> preferredLanguages = IUserPreferredLanguages(request)

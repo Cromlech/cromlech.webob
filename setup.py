@@ -14,12 +14,15 @@ install_requires = [
     ]
 
 tests_require = [
+    'pytest',
     ]
 
 setup(name='cromlech.webob',
       version=version,
       description="",
       long_description=open("README.txt").read() + "\n" +
+                       open(os.path.join('src', 'cromlech', 'webob',
+                                         'test_api.txt')).read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Programming Language :: Python",
@@ -31,12 +34,12 @@ setup(name='cromlech.webob',
       license='ZPL',
       packages=find_packages('src', exclude=['ez_setup']),
       package_dir={'': 'src'},
-      namespace_packages=['cromlech',],
+      namespace_packages=['cromlech', ],
       include_package_data=True,
       zip_safe=False,
-      tests_require = tests_require,
-      install_requires = install_requires,
-      extras_require = {'test': tests_require},
+      tests_require=tests_require,
+      install_requires=install_requires,
+      extras_require={'test': tests_require},
       entry_points="""
       # -*- Entry points: -*-
       """,
