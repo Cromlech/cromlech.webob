@@ -19,3 +19,4 @@ classImplements(webob.Response, IWebObResponse)
 
 import cromlech.webob.request
 import cromlech.webob.response
+from cromlech.webob.request import FormParams

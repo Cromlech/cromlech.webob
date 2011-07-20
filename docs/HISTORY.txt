@@ -1,8 +1,14 @@
 Changelog
 =========
 
+0.2a1 (2011-07-20)
+------------------
+
+- We now make sure our 'form' is a classic dict and not a MultiDict.
+
+
 0.1a1
--------------------
+-----
 
 - Initial release
 - i18n adapted from zope.publisher 

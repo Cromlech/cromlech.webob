@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import webob
-from grokcore.component import context, Adapter
-from zope.interface import implements
+from UserDict import UserDict
 from cromlech.io.interfaces import IRequest
 from cromlech.webob import IWebObRequest
+from grokcore.component import context, Adapter
+from zope.cachedescriptors.property import CachedProperty
+from zope.interface import implements
+
+
+class FormParams(UserDict):
+    def __init__(self, params):
+        self.data = params.mixed()
+        self.params = params
 
 
 class Request(webob.Request):
@@ -14,9 +22,9 @@ class Request(webob.Request):
     def environment(self):
         return self.environ
 
-    @property
+    @CachedProperty
     def form(self):
-        return self.params
+        return FormParams(self.params)
 
 
 Request.RequestClass = Request
@@ -36,6 +44,6 @@ class RequestAdapter(Adapter):
         self.method = request.method
         self.path = request.path
 
-    @property
+    @CachedProperty
     def form(self):
-        return self.request.params
+        return FormParams(self.request.params)
