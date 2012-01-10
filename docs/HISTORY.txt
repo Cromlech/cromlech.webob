@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.3.0 (2012-01-11)
+------------------
+
+- Made the necessary changes in the implementation to the latest ``cromlech``
+  packages working. This includes changing moving old ``cromlech.io``
+  references to the new ``cromlech.browser`` HTTP ones.
+
+- Adapted the i18n work to the new WebOb.
+
+
 0.2a1 (2011-07-20)
 ------------------
 
