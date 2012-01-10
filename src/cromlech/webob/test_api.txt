@@ -10,7 +10,7 @@ Groking :
 Importing :
 
   >>> import cromlech.webob
-  >>> from cromlech.io.interfaces import IRequest, IResponse
+  >>> from cromlech.browser.interfaces import IHTTPRequest, IHTTPResponse
   >>> from zope.interface.verify import verifyClass, verifyObject
 
 
@@ -19,17 +19,16 @@ Request and Response objects
 
 Based on WebOb ones but providing cromlech.io API::
 
-  >>> verifyClass(IRequest, cromlech.webob.request.Request)
+  >>> verifyClass(IHTTPRequest, cromlech.webob.request.Request)
   True
-  >>> verifyObject(IRequest, cromlech.webob.request.Request.blank('/'))
+  >>> verifyObject(IHTTPRequest, cromlech.webob.request.Request.blank('/'))
   True
 
-  >>> verifyClass(IResponse, cromlech.webob.response.Response)
+  >>> verifyClass(IHTTPResponse, cromlech.webob.response.Response)
   True
-  >>> verifyObject(IResponse, cromlech.webob.response.Response(body='',
-  ...                                               content_type='text/plain'))
+  >>> verifyObject(IHTTPResponse, cromlech.webob.response.Response(
+  ...      body='', content_type='text/plain'))
   True
-  
 
 
 Adapters
@@ -41,13 +40,13 @@ Adapting existing WebOb request or response to meet cromlech API::
   >>> request = webob.Request.blank('/path/to/app')
   >>> response = webob.Response()
 
-  >>> adapted_request = IRequest(request)
-  >>> adapted_response = IResponse(response)
+  >>> adapted_request = IHTTPRequest(request)
+  >>> adapted_response = IHTTPResponse(response)
 
-  >>> verifyObject(IRequest, adapted_request)
+  >>> verifyObject(IHTTPRequest, adapted_request)
   True
 
-  >>> verifyObject(IResponse, adapted_response)
+  >>> verifyObject(IHTTPResponse, adapted_response)
   True
 
 

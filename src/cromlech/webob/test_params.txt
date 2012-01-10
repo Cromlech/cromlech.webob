@@ -4,13 +4,13 @@ Form parameters
   >>> import cromlech.webob.request
   >>> request = cromlech.webob.request.Request.blank('/test?toto=1')
   >>> request.form
-  {'toto': u'1'}
+  {u'toto': u'1'}
 
   >>> request = cromlech.webob.request.Request.blank('/test?toto=1&toto=3')
   >>> request.form
-  {'toto': [u'1', u'3']}
+  {u'toto': [u'1', u'3']}
   >>> request.form.get('toto')
   [u'1', u'3']
 
   >>> request.form.params
-  UnicodeMultiDict([('toto', u'1'), ('toto', u'3')])
+  NestedMultiDict([(u'toto', u'1'), (u'toto', u'3')])

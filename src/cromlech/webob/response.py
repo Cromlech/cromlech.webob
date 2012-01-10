@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import webob
-from grokcore.component import context, Adapter
-from zope.interface import implements
-from cromlech.io.interfaces import IResponse
+import grokcore.component as grok
+
+from cromlech.browser.interfaces import IHTTPResponse
+from cromlech.browser.interfaces import IHTTPRenderer
 from cromlech.webob import IWebObResponse
 
 
 class Response(webob.Response):
-    implements(IResponse)
+    grok.implements(IHTTPResponse)
 
     @apply
     def body():
@@ -33,9 +34,9 @@ class Response(webob.Response):
         return self.body
 
 
-class ResponseAdapter(Adapter):
-    context(IWebObResponse)
-    implements(IResponse)
+class ResponseAdapter(grok.Adapter):
+    grok.context(IWebObResponse)
+    grok.implements(IHTTPResponse)
 
     def __init__(self, response):
         self.response = response
@@ -55,12 +56,6 @@ class ResponseAdapter(Adapter):
             return webob.Response.body.fget(self.response)
 
         return property(getBody, setBody)
-
-    def redirect(self, url, status=302, trusted=False):
-        """Sets the response for a redirect.
-        """
-        self.response.location = url
-        self.response.status = status
 
     def __str__(self):
         return self.response.body

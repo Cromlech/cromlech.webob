@@ -23,7 +23,9 @@ class RequestPreferredLanguages(Adapter):
         self.request = request
 
     def getPreferredLanguages(self):
-        return self.request.accept_language.best_matches()
+        if not self.request.accept_language:
+            return ['']
+        return list(self.request.accept_language)
 
 
 @adapter(IWebObRequest)
@@ -31,7 +33,7 @@ class RequestPreferredLanguages(Adapter):
 def get_locale(request):
     """Adapts request to ILocale based on preferred language.
 
-    hunder the hood a call to IUserPreferredLanguages will help decide
+    Under the hood a call to IUserPreferredLanguages will help decide
     language.
     """
     langs = IUserPreferredLanguages(request).getPreferredLanguages()
