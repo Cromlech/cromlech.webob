@@ -1,7 +1,15 @@
 Changelog
 =========
 
-0.3.0 (2012-01-11)
+0.4 (2012-01-24)
+----------------
+
+- Added redirection handling as a multiadapter, to match the changes made
+  in `cromlech.dawnlight`. The multiadapter's module must be grokked by
+  hand, it won't be done for you if you include this package.
+
+
+0.3 (2012-01-11)
 ------------------
 
 - Made the necessary changes in the implementation to the latest ``cromlech``
