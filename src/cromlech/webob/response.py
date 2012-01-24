@@ -2,9 +2,7 @@
 
 import webob
 import grokcore.component as grok
-
 from cromlech.browser.interfaces import IHTTPResponse
-from cromlech.browser.interfaces import IHTTPRenderer
 from cromlech.webob import IWebObResponse
 
 

@@ -1,12 +1,11 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.3.0'
+version = '0.4'
 
 install_requires = [
     'WebOb > 1.1.1',
     'cromlech.browser >= 0.3a2',
-    'cromlech.io >= 0.2a1',
     'grokcore.component',
     'setuptools',
     'zope.cachedescriptors',
@@ -15,7 +14,7 @@ install_requires = [
     ]
 
 tests_require = [
-    'pytest',
+    'zope.component',
     ]
 
 setup(name='cromlech.webob',
