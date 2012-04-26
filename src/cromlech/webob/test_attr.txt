@@ -1,0 +1,35 @@
+Test environnment
+=================
+
+Groking :
+
+  >>> import grokcore.component
+  >>> grokcore.component.testing.grok('cromlech.webob')
+
+Importing :
+
+  >>> from cromlech.browser.interfaces import IHTTPResponse
+
+
+Response adapter limits
+=======================
+
+  >>> from webob import Response
+  >>> response = Response('test')
+  
+  >>> adapted = IHTTPResponse(response)
+
+  >>> adapted.body
+  'test'
+
+  >>> dict(adapted.headers)
+  {'Content-Length': '4', 'Content-Type': 'text/html; charset=UTF-8'}
+
+
+When calling an attribute or method that doesn't exist explicitly on the
+`IHTTPResponse` adapter, it fails graceful with an `AttributeError`::
+
+  >>> adapted.__call__
+  Traceback (most recent call last):
+  ...
+  AttributeError: __call__

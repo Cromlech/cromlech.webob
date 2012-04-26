@@ -10,6 +10,7 @@ Groking :
 Importing :
 
   >>> import cromlech.webob
+  >>> from cromlech.io import IWSGIResponsive
   >>> from cromlech.browser.interfaces import IHTTPRequest, IHTTPResponse
   >>> from zope.interface.verify import verifyClass, verifyObject
 
@@ -26,8 +27,13 @@ Based on WebOb ones but providing cromlech.io API::
 
   >>> verifyClass(IHTTPResponse, cromlech.webob.response.Response)
   True
-  >>> verifyObject(IHTTPResponse, cromlech.webob.response.Response(
-  ...      body='', content_type='text/plain'))
+  >>> verifyClass(IWSGIResponsive, cromlech.webob.response.Response)
+  True
+
+  >>> inst = cromlech.webob.response.Response(body='')
+  >>> verifyObject(IHTTPResponse, inst)
+  True
+  >>> verifyObject(IWSGIResponsive, inst)
   True
 
 
@@ -42,11 +48,15 @@ Adapting existing WebOb request or response to meet cromlech API::
 
   >>> adapted_request = IHTTPRequest(request)
   >>> adapted_response = IHTTPResponse(response)
+  >>> adapted_responsive = IWSGIResponsive(response)
 
   >>> verifyObject(IHTTPRequest, adapted_request)
   True
 
   >>> verifyObject(IHTTPResponse, adapted_response)
+  True
+
+  >>> verifyObject(IWSGIResponsive, adapted_responsive)
   True
 
 

@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.5 (2012-04-26)
+----------------
+
+- Added restriction on the `IHTTPResponse` adapter, to disallow access to
+  non declated attributes. Tested accordingly.
+
+- Added an `IWSGIResponsive` adapter for `IWebObResponse`.
+
+- ``cromlech.webob.response.Response` now implements `IWSGIResponsive`.
+
+
 0.4 (2012-01-24)
 ----------------
 
