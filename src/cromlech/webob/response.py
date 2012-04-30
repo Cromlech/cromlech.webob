@@ -2,13 +2,12 @@
 
 import webob
 import grokcore.component as grok
-from cromlech.io import IWSGIResponsive
-from cromlech.browser.interfaces import IHTTPResponse
+from cromlech.browser import IResponse, IWSGIComponent
 from cromlech.webob import IWebObResponse
 
 
 class Response(webob.Response):
-    grok.implements(IHTTPResponse, IWSGIResponsive)
+    grok.implements(IResponse)
 
     @apply
     def body():
@@ -35,7 +34,7 @@ class Response(webob.Response):
 
 class ResponseAdapter(grok.Adapter):
     grok.context(IWebObResponse)
-    grok.implements(IHTTPResponse)
+    grok.implements(IResponse)
 
     def __getattr__(self, name):
         if name in IHTTPResponse:
@@ -55,10 +54,13 @@ class ResponseAdapter(grok.Adapter):
     def __str__(self):
         return self.context.body
 
+    def __call__(self, environ, start_response):
+        return self.context(environ, start_response)
 
-class WSGIResponsiveAdapter(grok.Adapter):
+
+class ResponseWSGIAdapter(grok.Adapter):
     grok.context(IWebObResponse)
-    grok.implements(IWSGIResponsive)
+    grok.implements(IWSGIComponent)
 
     def __call__(self, environ, start_response):
         return self.context(environ, start_response)

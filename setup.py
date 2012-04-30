@@ -5,8 +5,7 @@ version = '0.5'
 
 install_requires = [
     'WebOb > 1.1.1',
-    'cromlech.io >= 0.2',
-    'cromlech.browser >= 0.4',
+    'cromlech.browser >= 0.5',
     'grokcore.component',
     'setuptools',
     'zope.cachedescriptors',

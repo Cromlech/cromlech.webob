@@ -2,7 +2,7 @@
 
 import webob
 from UserDict import UserDict
-from cromlech.browser.interfaces import IHTTPRequest
+from cromlech.browser import IRequest
 from cromlech.webob import IWebObRequest
 from grokcore.component import context, Adapter
 from zope.cachedescriptors.property import CachedProperty
@@ -16,7 +16,7 @@ class FormParams(UserDict):
 
 
 class Request(webob.Request):
-    implements(IHTTPRequest)
+    implements(IRequest)
 
     @property
     def environment(self):
@@ -32,7 +32,7 @@ Request.RequestClass = Request
 
 class RequestAdapter(Adapter):
     context(IWebObRequest)
-    implements(IHTTPRequest)
+    implements(IRequest)
 
     def __init__(self, request):
         self.request = request
