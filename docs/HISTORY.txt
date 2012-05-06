@@ -16,7 +16,7 @@ Changelog
 
 - Added an `IWSGIResponsive` adapter for `IWebObResponse`.
 
-- ``cromlech.webob.response.Response` now implements `IWSGIResponsive`.
+- `cromlech.webob.response.Response` now implements `IWSGIResponsive`.
 
 
 0.4 (2012-01-24)
