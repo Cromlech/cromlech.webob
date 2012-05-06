@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.6 (2012-05-06)
+----------------
+
+- Now using the latest changes made in `cromlech.browser`.
+  This change is not backward compatible.
+
+
 0.5 (2012-04-26)
 ----------------
 

@@ -1,6 +1,4 @@
 cromlech.webob
-####################
+##############
 
-Using WebOb to implement io in cromlech stack.
-
-
+A WebOb implementation of a ``Cromlech`` request and response.
