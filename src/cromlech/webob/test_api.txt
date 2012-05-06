@@ -10,8 +10,7 @@ Groking :
 Importing :
 
   >>> import cromlech.webob
-  >>> from cromlech.io import IWSGIResponsive
-  >>> from cromlech.browser.interfaces import IHTTPRequest, IHTTPResponse
+  >>> from cromlech.browser import IRequest, IResponse, IWSGIComponent
   >>> from zope.interface.verify import verifyClass, verifyObject
 
 
@@ -20,20 +19,20 @@ Request and Response objects
 
 Based on WebOb ones but providing cromlech.io API::
 
-  >>> verifyClass(IHTTPRequest, cromlech.webob.request.Request)
+  >>> verifyClass(IRequest, cromlech.webob.request.Request)
   True
-  >>> verifyObject(IHTTPRequest, cromlech.webob.request.Request.blank('/'))
+  >>> verifyObject(IRequest, cromlech.webob.request.Request.blank('/'))
   True
 
-  >>> verifyClass(IHTTPResponse, cromlech.webob.response.Response)
+  >>> verifyClass(IResponse, cromlech.webob.response.Response)
   True
-  >>> verifyClass(IWSGIResponsive, cromlech.webob.response.Response)
+  >>> verifyClass(IWSGIComponent, cromlech.webob.response.Response)
   True
 
   >>> inst = cromlech.webob.response.Response(body='')
-  >>> verifyObject(IHTTPResponse, inst)
+  >>> verifyObject(IResponse, inst)
   True
-  >>> verifyObject(IWSGIResponsive, inst)
+  >>> verifyObject(IWSGIComponent, inst)
   True
 
 
@@ -46,17 +45,17 @@ Adapting existing WebOb request or response to meet cromlech API::
   >>> request = webob.Request.blank('/path/to/app')
   >>> response = webob.Response()
 
-  >>> adapted_request = IHTTPRequest(request)
-  >>> adapted_response = IHTTPResponse(response)
-  >>> adapted_responsive = IWSGIResponsive(response)
+  >>> adapted_request = IRequest(request)
+  >>> adapted_response = IResponse(response)
+  >>> adapted_responsive = IWSGIComponent(response)
 
-  >>> verifyObject(IHTTPRequest, adapted_request)
+  >>> verifyObject(IRequest, adapted_request)
   True
 
-  >>> verifyObject(IHTTPResponse, adapted_response)
+  >>> verifyObject(IResponse, adapted_response)
   True
 
-  >>> verifyObject(IWSGIResponsive, adapted_responsive)
+  >>> verifyObject(IWSGIComponent, adapted_responsive)
   True
 
 

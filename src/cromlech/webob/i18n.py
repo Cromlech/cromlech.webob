@@ -13,9 +13,8 @@ from cromlech.webob import IWebObRequest
 
 
 class RequestPreferredLanguages(Adapter):
-    """Adapts request to IUserPreferredLanguages using its headers
+    """Adapts request to IUserPreferredLanguages using its headers.
     """
-
     context(IWebObRequest)
     implements(IUserPreferredLanguages)
 

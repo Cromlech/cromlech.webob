@@ -34,10 +34,11 @@ class Response(webob.Response):
 
 class ResponseAdapter(grok.Adapter):
     grok.context(IWebObResponse)
-    grok.implements(IResponse)
+    grok.implements(IResponse, IWSGIComponent)
+    grok.provides(IResponse)
 
     def __getattr__(self, name):
-        if name in IHTTPResponse:
+        if name in IResponse:
             return getattr(self.context, name)
         raise AttributeError(name)
 

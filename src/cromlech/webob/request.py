@@ -10,6 +10,7 @@ from zope.interface import implements
 
 
 class FormParams(UserDict):
+
     def __init__(self, params):
         self.data = params.mixed()
         self.params = params

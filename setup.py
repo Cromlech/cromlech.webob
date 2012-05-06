@@ -1,7 +1,9 @@
-from setuptools import setup, find_packages
-import os
+# -*- coding: utf-8 -*-
 
-version = '0.5'
+import os
+from setuptools import setup, find_packages
+
+version = '0.6'
 
 install_requires = [
     'WebOb > 1.1.1',

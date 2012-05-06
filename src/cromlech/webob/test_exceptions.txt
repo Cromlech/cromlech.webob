@@ -16,11 +16,11 @@ Adapting to response
 
   >>> from cromlech.webob.request import Request
   >>> from cromlech.webob.response import Response
-  >>> from cromlech.browser import IHTTPResponse
+  >>> from cromlech.browser import IResponse
   >>> from zope.component import queryMultiAdapter
 
   >>> request = Request.blank('/path/to/app')
-  >>> response = queryMultiAdapter((request, found), IHTTPResponse)
+  >>> response = queryMultiAdapter((request, found), IResponse)
   
   >>> assert response is not None
   >>> assert response.__class__ == Response

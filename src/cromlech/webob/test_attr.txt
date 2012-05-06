@@ -8,7 +8,7 @@ Groking :
 
 Importing :
 
-  >>> from cromlech.browser.interfaces import IHTTPResponse
+  >>> from cromlech.browser.interfaces import IResponse
 
 
 Response adapter limits
@@ -17,7 +17,7 @@ Response adapter limits
   >>> from webob import Response
   >>> response = Response('test')
   
-  >>> adapted = IHTTPResponse(response)
+  >>> adapted = IResponse(response)
 
   >>> adapted.body
   'test'
@@ -29,7 +29,11 @@ Response adapter limits
 When calling an attribute or method that doesn't exist explicitly on the
 `IHTTPResponse` adapter, it fails graceful with an `AttributeError`::
 
-  >>> adapted.__call__
+
+  >>> adapted.context.set_cookie
+  <bound method Response.set_cookie of <Response at ... 200 OK>>
+
+  >>> adapted.set_cookier
   Traceback (most recent call last):
   ...
-  AttributeError: __call__
+  AttributeError: set_cookier
