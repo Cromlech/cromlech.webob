@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
 
-import grokcore.component as grok
+import crom
+
+from .response import Response
 from cromlech.browser import IRequest, IResponse, IResponseFactory
 from cromlech.browser import IHTTPRedirect, redirect_exception_response
-from cromlech.webob.response import Response
 
 
-@grok.adapter(IRequest, IHTTPRedirect)
-@grok.implementer(IResponse)
+@crom.adapter
+@crom.sources(IRequest, IHTTPRedirect)
+@crom.target(IResponse)
 def exception_response(request, exception):
     return redirect_exception_response(Response, exception)
 
 
-@grok.adapter(IRequest, IHTTPRedirect)
-@grok.implementer(IResponseFactory)
+@crom.adapter
+@crom.sources(IRequest, IHTTPRedirect)
+@crom.target(IResponseFactory)
 def exception_response_factory(request, exception):
     def make_exception_response():
         return redirect_exception_response(Response, exception)

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import crom
 import webob
-import grokcore.component as grok
+
 from cromlech.browser import IResponse, IWSGIComponent
 from cromlech.webob import IWebObResponse
 
@@ -32,10 +33,11 @@ class Response(webob.Response):
         return self.body
 
 
-class ResponseAdapter(grok.Adapter):
-    grok.context(IWebObResponse)
-    grok.implements(IResponse, IWSGIComponent)
-    grok.provides(IResponse)
+@crom.adapter
+@crom.sources(IWebObResponse)
+@crom.target(IResponse)
+@crom.implementer(IResponse, IWSGIComponent)
+class WebobResponseAdapter(object):
 
     def __getattr__(self, name):
         if name in IResponse:
@@ -59,9 +61,10 @@ class ResponseAdapter(grok.Adapter):
         return self.context(environ, start_response)
 
 
-class ResponseWSGIAdapter(grok.Adapter):
-    grok.context(IWebObResponse)
-    grok.implements(IWSGIComponent)
+@crom.adapter
+@crom.sources(IWebObResponse)
+@crom.target(IWSGIComponent)
+class ResponseWSGIAdapter(object):
 
     def __call__(self, environ, start_response):
         return self.context(environ, start_response)

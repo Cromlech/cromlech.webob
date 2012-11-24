@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import crom
 import webob
+
 from UserDict import UserDict
 from cromlech.browser import IRequest
 from cromlech.webob import IWebObRequest
-from grokcore.component import context, Adapter
 from zope.cachedescriptors.property import CachedProperty
 from zope.interface import implements
 
@@ -31,9 +32,10 @@ class Request(webob.Request):
 Request.RequestClass = Request
 
 
-class RequestAdapter(Adapter):
-    context(IWebObRequest)
-    implements(IRequest)
+@crom.adapter
+@crom.sources(IWebObRequest)
+@crom.target(IRequest)
+class WebobRequest(object):
 
     def __init__(self, request):
         self.request = request
