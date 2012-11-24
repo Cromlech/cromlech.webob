@@ -3,7 +3,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.0-dev'
+version = '1.0-crom'
 
 install_requires = [
     'WebOb > 1.1.1',
