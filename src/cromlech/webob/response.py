@@ -5,10 +5,11 @@ import webob
 
 from cromlech.browser import IResponse, IWSGIComponent
 from cromlech.webob import IWebObResponse
+from zope.interface import implements
 
 
 class Response(webob.Response):
-    grok.implements(IResponse)
+    implements(IResponse)
 
     @apply
     def body():
@@ -36,7 +37,7 @@ class Response(webob.Response):
 @crom.adapter
 @crom.sources(IWebObResponse)
 @crom.target(IResponse)
-@crom.implementer(IResponse, IWSGIComponent)
+@crom.implements(IResponse, IWSGIComponent)
 class WebobResponseAdapter(object):
 
     def __getattr__(self, name):
