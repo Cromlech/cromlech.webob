@@ -1,10 +1,12 @@
 Test environnment
 =================
 
-Groking :
+Configuring :
 
-  >>> import grokcore.component
-  >>> grokcore.component.testing.grok('cromlech.webob')
+  >>> from crom import testing, configure
+  >>> import cromlech.webob
+  >>> testing.setup()
+  >>> configure(cromlech.webob)
 
 Importing :
 
@@ -37,3 +39,9 @@ When calling an attribute or method that doesn't exist explicitly on the
   Traceback (most recent call last):
   ...
   AttributeError: set_cookier
+
+
+Cleaning
+========
+
+  >>> testing.teardown()

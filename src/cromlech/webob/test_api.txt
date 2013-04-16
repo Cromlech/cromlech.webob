@@ -1,10 +1,12 @@
 Test environnment
 =================
 
-Groking :
+Configuring :
 
-  >>> import grokcore.component
-  >>> grokcore.component.testing.grok('cromlech.webob')
+  >>> from crom import testing, configure
+  >>> import cromlech.webob
+  >>> testing.setup()
+  >>> configure(cromlech.webob)
 
 Importing :
 
@@ -58,29 +60,7 @@ Adapting existing WebOb request or response to meet cromlech API::
   True
 
 
-i18n
-=====
+Cleaning
+========
 
-We provide adapters to retrieve Locale::
-
-  >>> from zope.i18n.interfaces.locales import ILocale
-
-  >>> locale = ILocale(request)
-  >>> locale
-  <zope.i18n.locales.Locale object at 0x...>
-  >>> locale.getLocaleID()
-  ''
-  
-  >>> request.headers['Accept-Language'] = "fr-fr,fr-be,en"
-  >>> ILocale(request).getLocaleID()
-  u'fr_FR'
-
-
-Under the hood locale is choosen thanks to Prefered Language adapter::
-
-  >>> from zope.i18n.interfaces import IUserPreferredLanguages
-  >>> preferredLanguages = IUserPreferredLanguages(request)
-  >>> preferredLanguages
-  <cromlech.webob.i18n.RequestPreferredLanguages object at 0x...>
-  >>> preferredLanguages.getPreferredLanguages()
-  ['fr-fr', 'fr-be', 'en']
+  >>> testing.teardown()

@@ -7,7 +7,7 @@ from UserDict import UserDict
 from cromlech.browser import IRequest
 from cromlech.webob import IWebObRequest
 from zope.cachedescriptors.property import CachedProperty
-from zope.interface import implements
+from zope.interface import implementer
 
 
 class FormParams(UserDict):
@@ -17,8 +17,8 @@ class FormParams(UserDict):
         self.params = params
 
 
+@implementer(IRequest)
 class Request(webob.Request):
-    implements(IRequest)
 
     @property
     def environment(self):
@@ -35,6 +35,7 @@ Request.RequestClass = Request
 @crom.adapter
 @crom.sources(IWebObRequest)
 @crom.target(IRequest)
+@implementer(IRequest)
 class WebobRequest(object):
 
     def __init__(self, request):

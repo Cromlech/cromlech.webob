@@ -6,6 +6,7 @@ from setuptools import setup, find_packages
 version = '1.0-crom'
 
 install_requires = [
+    'crom',
     'WebOb > 1.1.1',
     'cromlech.browser >= 0.5',
     'setuptools',

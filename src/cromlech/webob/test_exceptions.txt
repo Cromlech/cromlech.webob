@@ -1,10 +1,12 @@
 Redirection handling
 ====================
 
-Groking :
+Configuring :
 
-  >>> import grokcore.component
-  >>> grokcore.component.testing.grok('cromlech.webob.exceptions')
+  >>> from crom import testing, configure
+  >>> import cromlech.webob
+  >>> testing.setup()
+  >>> configure(cromlech.webob)
 
 Error factoring :
 
@@ -17,13 +19,18 @@ Adapting to response
   >>> from cromlech.webob.request import Request
   >>> from cromlech.webob.response import Response
   >>> from cromlech.browser import IResponse
-  >>> from zope.component import queryMultiAdapter
 
   >>> request = Request.blank('/path/to/app')
-  >>> response = queryMultiAdapter((request, found), IResponse)
+  >>> response = IResponse(request, found)
   
   >>> assert response is not None
   >>> assert response.__class__ == Response
 
   >>> print response.status, response.location
   302 Found /someurl
+
+
+Cleaning
+========
+
+  >>> testing.teardown()
