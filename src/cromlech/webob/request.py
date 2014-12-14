@@ -3,12 +3,17 @@
 import crom
 import webob
 
-from UserDict import UserDict
 from cromlech.browser import IRequest
 from cromlech.webob import IWebObRequest
 from zope.cachedescriptors.property import CachedProperty
 from zope.interface import implementer
 
+# py3 compatibility
+try:
+    from UserDict import UserDict
+except ImportError:
+    from collections import UserDict
+    
 
 class FormParams(UserDict):
 
