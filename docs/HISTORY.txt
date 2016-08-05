@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.7 (2016-08-05)
+----------------
+
+- Handling virtualhosting by reading the 'HTTP_X_VHM_ROOT' variable from the
+  environ. It's done in the method `application_url` of the request.
+
+
 0.6 (2012-05-06)
 ----------------
 
