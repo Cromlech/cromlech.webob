@@ -26,7 +26,7 @@ Adapting to response
   >>> assert response is not None
   >>> assert response.__class__ == Response
 
-  >>> print response.status, response.location
+  >>> print(response.status, response.location)
   302 Found /someurl
 
 

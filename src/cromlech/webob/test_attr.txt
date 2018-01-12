@@ -22,10 +22,12 @@ Response adapter limits
   >>> adapted = IResponse(response)
 
   >>> adapted.body
-  'test'
+  b'test'
 
-  >>> dict(adapted.headers)
-  {'Content-Length': '4', 'Content-Type': 'text/html; charset=UTF-8'}
+  >>> assert dict(adapted.headers) == {
+  ...     'Content-Length': '4',
+  ...     'Content-Type': 'text/html; charset=UTF-8'
+  ... }
 
 
 When calling an attribute or method that doesn't exist explicitly on the
